@@ -1,0 +1,17 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: rag-demo-pg
+    environment:
+      POSTGRES_DB: ragdemo
+      POSTGRES_USER: rag
+      POSTGRES_PASSWORD: ragpw
+    ports:
+      - "5433:5432"   # 對外 5433，避開本機可能已佔用的 5432
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag -d ragdemo"]
+      interval: 3s
+      timeout: 3s
+      retries: 10

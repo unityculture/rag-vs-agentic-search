@@ -1,0 +1,16 @@
+# secrets — NEVER commit
+.env
+*.env
+!.env.example
+
+# python / uv
+.venv/
+__pycache__/
+*.pyc
+
+# Docker Postgres 資料卷（不進 git）
+data/db/
+pgdata/
+
+# streamlit
+.streamlit/secrets.toml
